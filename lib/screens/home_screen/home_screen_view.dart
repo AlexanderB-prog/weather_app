@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/entity/city_weather/city_weather.dart';
 import 'package:weather_app/navigation/main_navigation.dart';
 
 import 'home_screen_bloc.dart';
@@ -8,6 +7,8 @@ import 'home_screen_event.dart';
 import 'home_screen_state.dart';
 
 class HomeScreenPage extends StatelessWidget {
+  const HomeScreenPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {

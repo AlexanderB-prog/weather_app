@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:weather_app/entity/city_weather/city_weather.dart';
 
 
@@ -12,12 +11,4 @@ class NavigationHomeScreenState extends HomeScreenState {
 
 class StartHomeScreenState extends HomeScreenState {}
 
-
-// HomeScreenState init() {
-//   return HomeScreenState();
-// }
-//
-// HomeScreenState clone() {
-//   return HomeScreenState();
-// }
 
