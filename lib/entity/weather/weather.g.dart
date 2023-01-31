@@ -12,10 +12,10 @@ Main _$MainFromJson(Map<String, dynamic> json) => Main(
       (json['temp_min'] as num).toDouble(),
       (json['temp_max'] as num).toDouble(),
       json['pressure'] as int,
-      json['sea_level'] as int,
-      json['grnd_level'] as int,
+      json['sea_level'] as int?,
+      json['grnd_level'] as int?,
       json['humidity'] as int,
-      (json['temp_kf'] as num).toDouble(),
+      (json['temp_kf'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
@@ -24,9 +24,9 @@ Map<String, dynamic> _$MainToJson(Main instance) => <String, dynamic>{
       'temp_min': instance.tempMin,
       'temp_max': instance.tempMax,
       'pressure': instance.pressure,
+      'humidity': instance.humidity,
       'sea_level': instance.seaLevel,
       'grnd_level': instance.grandLevel,
-      'humidity': instance.humidity,
       'temp_kf': instance.tempKf,
     };
 
@@ -57,13 +57,11 @@ Map<String, dynamic> _$CloudsToJson(Clouds instance) => <String, dynamic>{
 Wind _$WindFromJson(Map<String, dynamic> json) => Wind(
       (json['speed'] as num).toDouble(),
       json['deg'] as int,
-      (json['gust'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$WindToJson(Wind instance) => <String, dynamic>{
       'speed': instance.speed,
       'deg': instance.deg,
-      'gust': instance.gust,
     };
 
 Coordinates _$CoordinatesFromJson(Map<String, dynamic> json) => Coordinates(

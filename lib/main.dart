@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: Screens.main,
       routes: MainNavigation().routes,
+      onGenerateRoute: MainNavigation().onGenerateRoute,
     );
   }
 }

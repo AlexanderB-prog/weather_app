@@ -12,7 +12,7 @@ class ApiClient {
   static const _hostCityCoordinate = 'http://api.openweathermap.org/geo/1.0';
   static const _apiKey = '17d71400c741c58d1c57fb10416e6215';
 
-  Future<List<CityCoordinate>?> getCityCoordinate(String cityName, int limit) async {
+  Future<List<CityCoordinate>> getCityCoordinate(String cityName, int limit) async {
     String path = '/direct?q=$cityName&limit=$limit&appid=$_apiKey';
     final url = Uri.parse('$_hostCityCoordinate$path');
     final request = await _client.getUrl(url);

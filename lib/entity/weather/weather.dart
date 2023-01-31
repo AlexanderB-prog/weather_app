@@ -12,13 +12,14 @@ class Main {
   @JsonKey(name: 'temp_max')
   final double tempMax;
   final int pressure;
-  @JsonKey(name: 'sea_level')
-  final int seaLevel;
-  @JsonKey(name: 'grnd_level')
-  final int grandLevel;
   final int humidity;
+  @JsonKey(name: 'sea_level')
+  final int? seaLevel;
+  @JsonKey(name: 'grnd_level')
+  final int? grandLevel;
+
   @JsonKey(name: 'temp_kf')
-  final double tempKf;
+  final double? tempKf;
 
   factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
 
@@ -58,9 +59,8 @@ class Clouds {
 class Wind {
   final double speed;
   final int deg;
-  final double gust;
 
-  Wind(this.speed, this.deg, this.gust);
+  Wind(this.speed, this.deg);
 
   factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
 
