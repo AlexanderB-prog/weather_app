@@ -1,14 +1,18 @@
 import 'package:bloc/bloc.dart';
+import 'package:weather_app/api/api_client.dart';
+import 'package:weather_app/entity/forecast_weather/forecast_weather.dart';
 
 import 'weather_event.dart';
 import 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  WeatherBloc() : super(WeatherState().init()) {
-    on<InitEvent>(_init);
+  WeatherBloc() : super(StartCityWeatherState()) {
+    on<DetailsEvent>(_details);
   }
 
-  void _init(InitEvent event, Emitter<WeatherState> emit) async {
-    emit(state.clone());
+  void _details(DetailsEvent event, Emitter<WeatherState> emit) async {
+
+    CityForecastWeather cityForecastWeather = await ApiClient().getCityForecastWeather(event.id);
+    emit(CityWeatherState(cityForecastWeather));
   }
 }

@@ -1,9 +1,15 @@
-class WeatherState {
-  WeatherState init() {
-    return WeatherState();
-  }
+import 'package:weather_app/entity/forecast_weather/forecast_weather.dart';
 
-  WeatherState clone() {
-    return WeatherState();
-  }
+abstract class WeatherState {
+}
+
+class StartCityWeatherState extends WeatherState {}
+
+class CityWeatherState extends WeatherState {
+  final CityForecastWeather cityForecastWeather;
+
+  CityWeatherState(this.cityForecastWeather);
+
+
+
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/entity/city_weather/city_weather.dart';
+import 'package:weather_app/entity/forecast_weather/forecast_weather.dart';
 import 'package:weather_app/screens/details_weather_screen.dart';
-import 'package:weather_app/screens/home_screen/home_screen_state.dart';
 import 'package:weather_app/screens/home_screen/home_screen_view.dart';
 import 'package:weather_app/screens/weather/weather_view.dart';
 
@@ -14,8 +14,7 @@ abstract class Screens {
 
 class MainNavigation {
   Map<String, WidgetBuilder> get routes => {
-        Screens.main: (context) => HomeScreenPage(),
-        Screens.detailsScreen: (context) => const DetailsWeatherScreen(),
+        Screens.main: (context) => const HomeScreenPage(),
       };
 
 
@@ -25,6 +24,11 @@ class MainNavigation {
         final arguments = settings.arguments as CityWeather;
         return MaterialPageRoute(
           builder: (context) => WeatherPage(cityWeather: arguments,),
+        );
+      case Screens.detailsScreen:
+        final arguments = settings.arguments as CityForecastWeather;
+        return MaterialPageRoute(
+          builder: (context) => DetailsWeatherScreen(cityForecastWeather: arguments,),
         );
       default:
         const widget = Text('Navigation error!!!');
