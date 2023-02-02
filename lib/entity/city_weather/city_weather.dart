@@ -30,13 +30,13 @@ Map<String, dynamic> toJson() => _$CityWeatherToJson(this);
 
 @JsonSerializable()
 class Sys {
-final int type;
-final int id;
+// final int type;
+// final int id;
 final String country;
 final int sunrise;
 final int sunset;
 
-  Sys(this.type, this.id, this.country, this.sunrise, this.sunset);
+  Sys(this.country, this.sunrise, this.sunset);
 
 factory Sys.fromJson(Map<String, dynamic> json) => _$SysFromJson(json);
 
