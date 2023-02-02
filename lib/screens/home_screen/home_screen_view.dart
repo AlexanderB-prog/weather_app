@@ -30,7 +30,7 @@ class MyWidget extends StatelessWidget {
         listener: (context, state) {
           if (state is NavigationHomeScreenState) {
             Navigator.of(context).pushNamed(Screens.weatherScreen,
-                arguments: NavigationHomeScreenState.cityWeather);
+                arguments: state.cityWeather);
           }
         },
         child: _buildPage(context)

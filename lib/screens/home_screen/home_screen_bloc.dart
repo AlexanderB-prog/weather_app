@@ -25,8 +25,8 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     //print('${cityCoordinate.first.name} ${cityCoordinate.first.lat} ${cityCoordinate.first.lon}');
     CityWeather cityWeather = await ApiClient().getCityWeather(
         cityCoordinate.first.lat, cityCoordinate.first.lon);
-    NavigationHomeScreenState.cityWeather=cityWeather;
-    emit(NavigationHomeScreenState());
+
+    emit(NavigationHomeScreenState(cityWeather: cityWeather));
   }
 }
 
