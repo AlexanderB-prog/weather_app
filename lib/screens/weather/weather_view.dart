@@ -98,12 +98,12 @@ Widget _buildPage(BuildContext context, CityWeather cityWeather) {
                   const SizedBox(
                       width: 120,
                       child: Text(
-                        'Облачность',
+                        'Влажность',
                         style: textStyle,
                       )),
                   const SizedBox(width: 30),
                   Text(
-                    '${cityWeather.clouds.all}(${cityWeather.weather.first.description})',
+                    '${cityWeather.clouds.all}(${cityWeather.main.humidity})',
                     style: textStyle,
                   ),
                 ],
@@ -120,7 +120,7 @@ Widget _buildPage(BuildContext context, CityWeather cityWeather) {
                       )),
                   const SizedBox(width: 30),
                   Text(
-                    cityWeather.wind.speed.toString(),
+                    '${cityWeather.wind.speed.toString()} м/с',
                     style: textStyle,
                   ),
                 ],

@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/api/api_client.dart';
 import 'package:weather_app/entity/forecast_weather/forecast_weather.dart';
 

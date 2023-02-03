@@ -32,7 +32,7 @@ class ApiClient {
   }
 
   Future<CityForecastWeather> getCityForecastWeather(int id) async {
-    String path = '/forecast?id=$id&cnt=${(8-(DateTime.now().hour/3).round())+24}&lang=ru&appid=$_apiKey';
+    String path = '/forecast?id=$id&cnt=${(8-(DateTime.now().hour/3).floor())+24}&lang=ru&appid=$_apiKey';
     final url = Uri.parse('$_hostWeather$path');
     final request = await _client.getUrl(url);
     final response = await request.close();
