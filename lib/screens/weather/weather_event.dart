@@ -9,7 +9,7 @@ class DetailsEvent extends WeatherEvent {
 
 }
 
-
+class PopEvent extends WeatherEvent {}
 
 
 

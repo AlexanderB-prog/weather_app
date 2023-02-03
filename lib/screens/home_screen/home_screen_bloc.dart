@@ -9,24 +9,29 @@ import 'home_screen_state.dart';
 class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
   HomeScreenBloc() : super(StartHomeScreenState()) {
     on<OnChangedHomeScreenEvent>(_onChange);
-    on<NavigationEvent>(_navigation);
+    on<NavigationHomeScreenEvent>(_navigation);
   }
+
 
   String city = '';
 
   void _onChange(OnChangedHomeScreenEvent event,_) {
     city = event.text;
   }
-  void _navigation(NavigationEvent event, Emitter<HomeScreenState> emit) async {
+  void _navigation(NavigationHomeScreenEvent event, Emitter<HomeScreenState> emit) async {
 
-    late List<CityCoordinate> cityCoordinate;
-    cityCoordinate = await ApiClient().getCityCoordinate(city, 1);
+    try {
+      late List<CityCoordinate> cityCoordinate;
+      cityCoordinate = await ApiClient().getCityCoordinate(city, 1);
 
-    //print('${cityCoordinate.first.name} ${cityCoordinate.first.lat} ${cityCoordinate.first.lon}');
-    CityWeather cityWeather = await ApiClient().getCityWeather(
-        cityCoordinate.first.lat, cityCoordinate.first.lon);
+      //print('${cityCoordinate.first.name} ${cityCoordinate.first.lat} ${cityCoordinate.first.lon}');
+      CityWeather cityWeather = await ApiClient().getCityWeather(
+          cityCoordinate.first.lat, cityCoordinate.first.lon);
 
-    emit(NavigationHomeScreenState(cityWeather: cityWeather));
+      emit(NavigationHomeScreenState(cityWeather: cityWeather));
+    } catch (e) {
+      emit(ErrorHomeScreenState(e.toString()));
+    }
   }
 }
 
