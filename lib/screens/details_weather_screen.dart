@@ -49,7 +49,7 @@ class ListForecastWeather extends StatelessWidget {
                         style: textStyle,
                       )),
                   const SizedBox(width: 30),
-                  Text(DateFormat('hh:mm a, MM/dd/yyyy')
+                  Text(DateFormat('HH:mm, dd/MM/yyyy')
                       .format(DateTime.fromMillisecondsSinceEpoch(
                           cityForecastWeather.list[index].dt * 1000))
                       .toString()),

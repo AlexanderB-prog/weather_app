@@ -12,21 +12,21 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     on<NavigationHomeScreenEvent>(_navigation);
   }
 
-
   String city = '';
 
-  void _onChange(OnChangedHomeScreenEvent event,_) {
+  void _onChange(OnChangedHomeScreenEvent event, _) {
     city = event.text;
   }
-  void _navigation(NavigationHomeScreenEvent event, Emitter<HomeScreenState> emit) async {
 
+  void _navigation(
+      NavigationHomeScreenEvent event, Emitter<HomeScreenState> emit) async {
     try {
       late List<CityCoordinate> cityCoordinate;
       cityCoordinate = await ApiClient().getCityCoordinate(city, 1);
 
       //print('${cityCoordinate.first.name} ${cityCoordinate.first.lat} ${cityCoordinate.first.lon}');
-      CityWeather cityWeather = await ApiClient().getCityWeather(
-          cityCoordinate.first.lat, cityCoordinate.first.lon);
+      CityWeather cityWeather = await ApiClient()
+          .getCityWeather(cityCoordinate.first.lat, cityCoordinate.first.lon);
 
       emit(NavigationHomeScreenState(cityWeather: cityWeather));
     } catch (e) {
@@ -34,4 +34,3 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     }
   }
 }
-

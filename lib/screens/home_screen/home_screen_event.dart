@@ -7,4 +7,3 @@ class OnChangedHomeScreenEvent extends HomeScreenEvent {
 
   OnChangedHomeScreenEvent(this.text);
 }
-

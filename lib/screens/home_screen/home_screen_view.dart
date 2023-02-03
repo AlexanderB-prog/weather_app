@@ -9,15 +9,10 @@ import 'home_screen_state.dart';
 class HomeScreenPage extends StatelessWidget {
   const HomeScreenPage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return
-
-      BlocProvider(
-          create: (context) => HomeScreenBloc(),
-          child: const MyWidget()
-      );
+    return BlocProvider(
+        create: (context) => HomeScreenBloc(), child: const MyWidget());
   }
 }
 
@@ -34,16 +29,23 @@ class MyWidget extends StatelessWidget {
             Navigator.of(context).pushReplacementNamed(Screens.weatherScreen,
                 arguments: state.cityWeather);
           }
-          if (state is ErrorHomeScreenState)
-            {
-              Scaffold.of(context).showBottomSheet((context) => Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: 100,
-                color: Colors.red,
-                child: Text(state.text, style: const TextStyle(color: Colors.white),),
-              ));
-            }
+          if (state is ErrorHomeScreenState) {
+            Scaffold.of(context).showBottomSheet((context) => GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: 100,
+                    color: Colors.red,
+                    child: Text(
+                      state.text,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ));
+          }
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -59,8 +61,9 @@ class MyWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: TextField(
                 onChanged: (text) {
-                  context.read<HomeScreenBloc>().add(
-                      OnChangedHomeScreenEvent(text));
+                  context
+                      .read<HomeScreenBloc>()
+                      .add(OnChangedHomeScreenEvent(text));
                 },
                 maxLines: 1,
                 decoration: InputDecoration(
@@ -92,15 +95,15 @@ class MyWidget extends StatelessWidget {
               style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      )),
+                    borderRadius: BorderRadius.circular(15.0),
+                  )),
                   backgroundColor: const MaterialStatePropertyAll<Color>(
                       Color.fromRGBO(0, 92, 138, 1))),
               onPressed: () {
                 context.read<HomeScreenBloc>().add(NavigationHomeScreenEvent());
               },
               child: const Text(
-                'Узнать координаты',
+                'Узнать погоду',
               ),
             ),
           ],
@@ -108,5 +111,4 @@ class MyWidget extends StatelessWidget {
       ),
     );
   }
-
 }

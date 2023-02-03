@@ -41,10 +41,6 @@ class ListElement {
   Map<String, dynamic> toJson() => _$ListElementToJson(this);
 }
 
-
-
-
-
 @JsonSerializable()
 class Sys {
   final String pod;
@@ -55,8 +51,6 @@ class Sys {
 
   Map<String, dynamic> toJson() => _$SysToJson(this);
 }
-
-
 
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class City {

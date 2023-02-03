@@ -12,8 +12,17 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   }
 
   void _details(DetailsEvent event, Emitter<WeatherState> emit) async {
-
-    CityForecastWeather cityForecastWeather = await ApiClient().getCityForecastWeather(event.id);
+    CityForecastWeather cityForecastWeather =
+        await ApiClient().getCityForecastWeather(event.id);
+    double minTemp = cityForecastWeather.list.first.main.temp;
+    ListElement minElement = cityForecastWeather.list.first;
+    for (var e in cityForecastWeather.list) {
+      if (e.main.temp < minTemp) {
+        minElement = e;
+        minTemp = e.main.temp;
+      }
+    }
+    cityForecastWeather.list.insert(0, minElement);
     emit(CityWeatherState(cityForecastWeather));
   }
 

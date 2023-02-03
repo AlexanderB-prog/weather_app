@@ -39,7 +39,6 @@ class MyListenerWidget extends StatelessWidget {
           if (state is PopWeatherState) {
             Navigator.of(context).pushReplacementNamed(Screens.main);
           }
-
         },
         child: _buildPage(context, cityWeather));
   }
@@ -59,22 +58,26 @@ Widget _buildPage(BuildContext context, CityWeather cityWeather) {
           },
           child: Row(
             children: const [
-              Icon(Icons.search_rounded, color: Colors.white,),
-              Text('Новый поиск',style: TextStyle(color: Colors.white),),
+              Icon(
+                Icons.search_rounded,
+                color: Colors.white,
+              ),
+              Text(
+                'Новый поиск',
+                style: TextStyle(color: Colors.white),
+              ),
             ],
           ),
         ),
         const Expanded(
             child: SizedBox(
-              width: 10,
-            )),
+          width: 10,
+        )),
         IconButton(
             onPressed: () {
               bloc.add(DetailsEvent(cityWeather.id));
             },
             icon: const Icon(Icons.more)),
-
-
       ],
     ),
     body: Container(

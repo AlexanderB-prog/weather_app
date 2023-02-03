@@ -12,8 +12,9 @@ class ApiClient {
   static const _hostCityCoordinate = 'http://api.openweathermap.org/geo/1.0';
   static const _apiKey = '17d71400c741c58d1c57fb10416e6215';
 
-  Future<List<CityCoordinate>> getCityCoordinate(String cityName, int limit) async {
-    String path = '/direct?q=$cityName&limit=$limit&appid=$_apiKey';
+  Future<List<CityCoordinate>> getCityCoordinate(
+      String cityName, int limit) async {
+    String path = '/direct?q=$cityName&limit=$limit&lang=ru&appid=$_apiKey';
     final url = Uri.parse('$_hostCityCoordinate$path');
     final request = await _client.getUrl(url);
     final response = await request.close();
@@ -21,9 +22,8 @@ class ApiClient {
     return json.map((e) => CityCoordinate.fromJson(e)).toList();
   }
 
-
-  Future<CityWeather> getCityWeather(double lat,double lon) async {
-    String path = '/weather?lat=$lat&lon=$lon&appid=$_apiKey';
+  Future<CityWeather> getCityWeather(double lat, double lon) async {
+    String path = '/weather?lat=$lat&lon=$lon&lang=ru&appid=$_apiKey';
     final url = Uri.parse('$_hostWeather$path');
     final request = await _client.getUrl(url);
     final response = await request.close();
@@ -31,16 +31,14 @@ class ApiClient {
     return CityWeather.fromJson(json);
   }
 
-
   Future<CityForecastWeather> getCityForecastWeather(int id) async {
-    String path = '/forecast?id=$id&appid=$_apiKey';
+    String path = '/forecast?id=$id&cnt=${(8-(DateTime.now().hour/3).round())+24}&lang=ru&appid=$_apiKey';
     final url = Uri.parse('$_hostWeather$path');
     final request = await _client.getUrl(url);
     final response = await request.close();
     final json = (await response.jsonDecode()) as Map<String, dynamic>;
     return CityForecastWeather.fromJson(json);
   }
-
 }
 
 extension HttpClientResponseJsonDecode on HttpClientResponse {
