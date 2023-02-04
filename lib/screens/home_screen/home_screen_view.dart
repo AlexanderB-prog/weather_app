@@ -60,6 +60,7 @@ class MyWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: TextField(
+                onSubmitted: (text) {context.read<HomeScreenBloc>().add(NavigationHomeScreenEvent());},
                 onChanged: (text) {
                   context
                       .read<HomeScreenBloc>()

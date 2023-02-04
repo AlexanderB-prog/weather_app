@@ -73,11 +73,23 @@ Widget _buildPage(BuildContext context, CityWeather cityWeather) {
             child: SizedBox(
           width: 10,
         )),
-        IconButton(
-            onPressed: () {
-              bloc.add(DetailsEvent(cityWeather.id));
-            },
-            icon: const Icon(Icons.more)),
+        TextButton(
+          onPressed: () {
+            bloc.add(DetailsEvent(cityWeather.id));
+          },
+          child: Row(
+            children: const [
+              Icon(
+                Icons.more_horiz,
+                color: Colors.white,
+              ),
+              Text(
+                'прогноз 3 дня',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
       ],
     ),
     body: Container(
@@ -98,16 +110,17 @@ Widget _buildPage(BuildContext context, CityWeather cityWeather) {
                   const SizedBox(
                       width: 120,
                       child: Text(
-                        'Влажность',
+                        'Температура',
                         style: textStyle,
                       )),
                   const SizedBox(width: 30),
                   Text(
-                    '${cityWeather.clouds.all}(${cityWeather.main.humidity})',
+                    '${(cityWeather.main.temp - 273.15).round()}ºC',
                     style: textStyle,
                   ),
                 ],
               ),
+
               const SizedBox(height: 15),
               Row(
                 children: [
@@ -132,12 +145,12 @@ Widget _buildPage(BuildContext context, CityWeather cityWeather) {
                   const SizedBox(
                       width: 120,
                       child: Text(
-                        'Температура',
+                        'Влажность',
                         style: textStyle,
                       )),
                   const SizedBox(width: 30),
                   Text(
-                    '${(cityWeather.main.temp - 273.15).round()}ºC',
+                    '${cityWeather.main.humidity}%',
                     style: textStyle,
                   ),
                 ],

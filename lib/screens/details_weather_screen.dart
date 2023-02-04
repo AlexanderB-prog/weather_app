@@ -80,7 +80,7 @@ class ListForecastWeather extends StatelessWidget {
         itemCount: cityForecastWeather.list.length,
         itemBuilder: (context, index) {
           return SizedBox(
-            height: 35,
+            height: 75,
             child: Card(
               child: Row(
                 children: [
@@ -103,7 +103,7 @@ class ListForecastWeather extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                      cityForecastWeather.list[index].main.humidity.toString()),
+                      '${cityForecastWeather.list[index].main.humidity}%'),
                   const SizedBox(
                     width: 35,
                   )
