@@ -13,7 +13,6 @@ CityCoordinate _$CityCoordinateFromJson(Map<String, dynamic> json) =>
       (json['lat'] as num).toDouble(),
       (json['lon'] as num).toDouble(),
       json['country'] as String,
-      json['state'] as String,
     );
 
 Map<String, dynamic> _$CityCoordinateToJson(CityCoordinate instance) =>
@@ -23,7 +22,6 @@ Map<String, dynamic> _$CityCoordinateToJson(CityCoordinate instance) =>
       'lat': instance.lat,
       'lon': instance.lon,
       'country': instance.country,
-      'state': instance.state,
     };
 
 LocalNames _$LocalNamesFromJson(Map<String, dynamic> json) => LocalNames(

@@ -23,13 +23,14 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     try {
       late List<CityCoordinate> cityCoordinate;
       cityCoordinate = await ApiClient().getCityCoordinate(city, 1);
-
-      //print('${cityCoordinate.first.name} ${cityCoordinate.first.lat} ${cityCoordinate.first.lon}');
+      print(cityCoordinate);
       CityWeather cityWeather = await ApiClient()
           .getCityWeather(cityCoordinate.first.lat, cityCoordinate.first.lon);
-
       emit(NavigationHomeScreenState(cityWeather: cityWeather));
     } catch (e) {
+
+      print(e);
+      print(e.runtimeType);
       emit(ErrorHomeScreenState(e.toString()));
     }
   }

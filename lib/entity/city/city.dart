@@ -11,9 +11,8 @@ final LocalNames localNames;
 final double lat;
 final double lon;
 final String country;
-final String state;
 
-  CityCoordinate(this.name, this.localNames, this.lat, this.lon, this.country, this.state);
+  CityCoordinate(this.name, this.localNames, this.lat, this.lon, this.country);
 
 factory CityCoordinate.fromJson(Map<String, dynamic> json) =>
     _$CityCoordinateFromJson(json);
